@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Logo with Sequential Color Change</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        #logo {
+            position: absolute;
+            width: 100px; /* Adjust the size as needed */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="Wallpaper.png" id="logo" alt="Bouncing Logo">
+
+    <script>
+        const logo = document.getElementById('logo');
+        let speedX = 3; // Horizontal speed
+        let speedY = 3; // Vertical speed
+        let positionX = Math.random() * window.innerWidth;
+        let positionY = Math.random() * window.innerHeight;
+        let bouncedX = false; // To track horizontal bounce
+        let bouncedY = false; // To track vertical bounce
+
+        // Define a sequence of colors (or hue rotation degrees)
+        const colors = [
+            'hue-rotate(0deg)',  // Original
+            'hue-rotate(60deg)', // Yellow
+            'hue-rotate(120deg)',// Green
+            'hue-rotate(180deg)',// Cyan
+            'hue-rotate(240deg)',// Blue
+            'hue-rotate(300deg)' // Magenta
+        ];
+        let currentColorIndex = 0; // Start with the first color
+
+        // Ensure the logo starts within the window
+        if (positionX + logo.width > window.innerWidth) {
+            positionX = window.innerWidth - logo.width;
+        }
+        if (positionY + logo.height > window.innerHeight) {
+            positionY = window.innerHeight - logo.height;
+        }
+
+        // Function to change to the next color in the sequence
+        function changeColor() {
+            currentColorIndex = (currentColorIndex + 1) % colors.length; // Cycle through colors
+            logo.style.filter = colors[currentColorIndex]; // Apply the next color
+        }
+
+        // Update logo position and handle bouncing
+        function updatePosition() {
+            positionX += speedX;
+            positionY += speedY;
+
+            // Horizontal bounce
+            if (positionX + logo.width >= window.innerWidth || positionX <= 0) {
+                if (!bouncedX) {
+                    speedX = -speedX;
+                    changeColor(); // Change color only once per bounce
+                    bouncedX = true;
+                }
+            } else {
+                bouncedX = false; // Reset after bounce
+            }
+
+            // Vertical bounce
+            if (positionY + logo.height >= window.innerHeight || positionY <= 0) {
+                if (!bouncedY) {
+                    speedY = -speedY;
+                    changeColor(); // Change color only once per bounce
+                    bouncedY = true;
+                }
+            } else {
+                bouncedY = false; // Reset after bounce
+            }
+
+            // Update the logo's position
+            logo.style.transform = `translate(${positionX}px, ${positionY}px)`;
+
+            // Use requestAnimationFrame for smooth animations
+            requestAnimationFrame(updatePosition);
+        }
+
+        // Start the bouncing effect once the window has loaded
+        window.onload = () => {
+            requestAnimationFrame(updatePosition);
+        };
+    </script>
+</body>
+</html>
