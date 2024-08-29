@@ -66,7 +66,7 @@
             if (positionX + logo.width >= window.innerWidth || positionX <= 0) {
                 if (!bouncedX) {
                     speedX = -speedX;
-                    changeColor(); // Change color only once per bounce
+                    colors(); // Change color only once per bounce
                     bouncedX = true;
                 }
             } else {
@@ -77,7 +77,7 @@
             if (positionY + logo.height >= window.innerHeight || positionY <= 0) {
                 if (!bouncedY) {
                     speedY = -speedY;
-                    changeColor(); // Change color only once per bounce
+                    colors()// Change color only once per bounce
                     bouncedY = true;
                 }
             } else {
