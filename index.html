@@ -28,15 +28,17 @@
         let positionY = Math.random() * window.innerHeight;
         let bouncedX = false; // To track horizontal bounce
         let bouncedY = false; // To track vertical bounce
+        let x = 0;
 
         // Define a sequence of colors (or hue rotation degrees)
         const colors = [
-            'hue-rotate(0deg)',  // Original
-            'hue-rotate(60deg)', // Yellow
-            'hue-rotate(120deg)',// Green
-            'hue-rotate(180deg)',// Cyan
-            'hue-rotate(240deg)',// Blue
-            'hue-rotate(300deg)' // Magenta
+            let x = x + 1
+        
+            'hue-rotate("x"deg)'
+
+            if x <=357{
+                var x = 0
+            }
         ];
         let currentColorIndex = 0; // Start with the first color
 
