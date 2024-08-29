@@ -31,7 +31,8 @@
         let x = 0;
 
         // Define a sequence of colors (or hue rotation degrees)
-        const colors = [
+
+        function colors(x) {
             let x = x + 1;
         
             'hue-rotate("x"deg)',
@@ -39,7 +40,8 @@
             if (x <=357){
                 var x = 0;
             }
-        ];
+        }
+        
         let currentColorIndex = 0; // Start with the first color
 
         // Ensure the logo starts within the window
@@ -52,8 +54,7 @@
 
         // Function to change to the next color in the sequence
         function changeColor() {
-            currentColorIndex = (currentColorIndex + 1) % colors.length; // Cycle through colors
-            logo.style.filter = colors[currentColorIndex]; // Apply the next color
+            logo.style.filter = colors[1]; // Apply the next color
         }
 
         // Update logo position and handle bouncing
